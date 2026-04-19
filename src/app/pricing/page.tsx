@@ -1,9 +1,7 @@
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "Pricing | AutoInfra",
-  description: "Automation & Infrastructure Consulting Pricing.",
-};
+import { useEffect } from "react";
+import Link from "next/link";
 
 const TIERS = [
   {
@@ -52,6 +50,15 @@ const TIERS = [
 ];
 
 export default function PricingPage() {
+  useEffect(() => {
+    // Fire once on mount — tells the server someone hit /pricing
+    fetch("/api/track-visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ page: "/pricing" }),
+    }).catch(() => {}); // silent fail — never block the UI
+  }, []);
+
   return (
     <div className="py-24 sm:py-32 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
