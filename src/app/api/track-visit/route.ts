@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
         // Build the same message format your n8n workflow already understands
         const slackMessage = {
-            text: `New visitor on ${page} — ${orgClean} (${country})`,
+            text: `New visitor on ${page} - ${orgClean} (${country})`,
         }
 
         // Post to Slack
